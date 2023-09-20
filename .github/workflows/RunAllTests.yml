@@ -27,10 +27,9 @@ jobs:
         with:
           dotnet-version: |
             8.0.x
-      # clones reposetory
-      - name: Get tests
-        run: git clone https://github.com/emil476m/PlayWrightTestsExersice
-
-      # Runs API and then shuts it down
-      - name: Run API test step 1
-        run: dotnet test # & (sleep 20) && kill -9 $(lsof -t -i:5000)
+     
+      - run: dotnet build
+      - name: Ensure browsers are installed
+        run: pwsh bin/Debug/net8.0/playwright.ps1 install --with-deps
+      - name: Run your tests
+        run: dotnet test
