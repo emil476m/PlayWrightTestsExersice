@@ -128,10 +128,11 @@ public class Tests : PageTest
 
     }
     
-    [TestCase("Todo item 1 string here")]
-    [TestCase("Todo item 2 string here")]
-    public async Task InlinedTestAndViewPort(string todoString)
+    [Test]
+    public async Task InlinedTestAndViewPort()
     {
+        
+        var testInput = "testTodo";
 
         await Page.SetViewportSizeAsync(8, 6);
         
@@ -139,13 +140,13 @@ public class Tests : PageTest
         
         await Page.GetByPlaceholder("What needs to be done?").ClickAsync();
 
-        await Page.GetByPlaceholder("What needs to be done?").FillAsync(todoString);
+        await Page.GetByPlaceholder("What needs to be done?").FillAsync(testInput);
 
         await Page.GetByPlaceholder("What needs to be done?").PressAsync("Enter");
         
         //Make Assertions
         
-        await Expect(Page.GetByText(todoString)).ToBeVisibleAsync();
+        await Expect(Page.GetByText(testInput)).ToBeVisibleAsync();
 
     }
     
