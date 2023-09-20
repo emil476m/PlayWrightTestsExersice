@@ -33,4 +33,4 @@ jobs:
 
       # Runs API and then shuts it down
       - name: Run API test step 1
-        run: dotnet test & (sleep 20) && kill -9 $(lsof -t -i:5000)
+        run: dotnet test # & (sleep 20) && kill -9 $(lsof -t -i:5000)
